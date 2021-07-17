@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 # Copyright (c) 2011 Chris Howie
 #
@@ -26,19 +26,19 @@ from PyQRNative import QRCode, QRErrorCorrectLevel
 try:
     text = sys.argv[1]
 except:
-    print 'Usage: python', sys.argv[0], 'content'
+    print('Usage: python', sys.argv[0], 'content')
     sys.exit(1)
 
 levels = [17, 32, 53, 78, 106, 134, 154, 192, 230, 271]
 level = None
 
-for i in zip(range(1, 11), levels):
+for i in zip(list(range(1, 11)), levels):
     if len(text) <= i[1]:
         level = i[0]
         break
 
 if level is None:
-    print 'Content too long (271 characters maximum).'
+    print('Content too long (271 characters maximum).')
     sys.exit(1)
 
 qr = QRCode(level, QRErrorCorrectLevel.L)
@@ -51,7 +51,7 @@ light = u'\u2588\u2588'
 width = qr.moduleCount
 
 for i in range(4):
-    print light * (qr.moduleCount + 8)
+    print(light * (qr.moduleCount + 8))
 
 for y in range(qr.moduleCount):
     row = light * 4
@@ -60,8 +60,8 @@ for y in range(qr.moduleCount):
         row += dark if qr.isDark(y, x) else light
 
     row += light * 4
-    print row
+    print(row)
 
 for i in range(4):
-    print light * (qr.moduleCount + 8)
+    print(light * (qr.moduleCount + 8))
 
